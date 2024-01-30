@@ -1,5 +1,8 @@
 directory_path="$PREFIX/Vrytec"
 
+cd $HOME
+mkdir Vrytec
+
 if [ -d "$directory_path" ]; then
     echo "#-------------Tweaks Generator---------------" >> /data/data/com.termux/files/usr/etc/bash.bashrc
     echo "alias Generate='bash \$PREFIX/Vrytec/.exe'" >> /data/data/com.termux/files/usr/etc/bash.bashrc

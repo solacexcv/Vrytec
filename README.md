@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/forks/solacexcv/Vrytec?color=cyan&style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/watchers/solacexcv/Vrytec?color=cyan&style=for-the-badge&color=purple">
   <img src="https://img.shields.io/github/issues/solacexcv/Vrytec?color=red&style=for-the-badge">
-  <img src="https://hits.dwyl.com/solacexcv/Vrytec as.svg" width="140" height="28">
+  <img src="https://hits.dwyl.com/solacexcv/Vrytec-Spam.svg" width="140" height="28">
 <br>
 <br>
   <img src="https://img.shields.io/badge/Author-solacexcv-purple?style=flat-square">

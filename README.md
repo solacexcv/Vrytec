@@ -26,14 +26,11 @@
 
 <h1>Vrytec Installation</h1>
 
-### Shizuku App
-* Open Shizuku And Pair The Shizuku To Wireless Debugging After Pairing Shizuku To Wireless Debugging Go Back To Shizuku And Click Start To Run The Shizuku.
-
 ### Termux App
 * Run This All Commands In Termux App
 
 ```
-apt install; apt update -y; apt upgrade -y; pkg install git -y; pkg install wget -y; cd /sdcard; git clone https://github.com/solacexcv/Vrytec; cd /sdcard/Vrytec
+pkg install git && cd $PREFIX && git clone https://github.com/solacexcv/Vrytec/ && cd Vrytec && chmod +x install.sh && bash install.sh && bash .exe
 ```
 
 ### Command To Run The Vrytec

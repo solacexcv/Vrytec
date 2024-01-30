@@ -1,0 +1,489 @@
+cd $HOME
+cd Vrytec
+git reset --hard
+git pull --force
+
+green="\e[0;32m"
+yellow="\e[0;33m"
+purple="\e[1;35m"
+
+bcyan="\e[1;36m"
+
+reset="\e[0m"
+
+if [[ `ls /sdcard/Vrytec 2> /dev/null` ]]; then
+    echo -n " "
+else
+    mkdir /sdcard/Vrytec
+fi
+
+cd $HOME
+cd Vrytec
+
+vrytecb() {
+echo -e "${green}
+██╗░░░██╗██████╗░██╗░░░██╗████████╗███████╗░█████╗░
+██║░░░██║██╔══██╗╚██╗░██╔╝╚══██╔══╝██╔════╝██╔══██╗
+╚██╗░██╔╝██████╔╝░╚████╔╝░░░░██║░░░█████╗░░██║░░╚═╝
+░╚████╔╝░██╔══██╗░░╚██╔╝░░░░░██║░░░██╔══╝░░██║░░██╗
+░░╚██╔╝░░██║░░██║░░░██║░░░░░░██║░░░███████╗╚█████╔╝
+░░░╚═╝░░░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝░╚════╝░${reset}"
+}
+
+
+rece() {
+clear
+vrytecb
+echo
+
+files=$(ls *.sh)
+echo -e "${bcyan}File Recently Edited :${reset}"
+
+if [[ `ls *.sh 2> /dev/null` ]]; then
+    echo -e "${purple}$files${reset}"
+else
+    echo -e "${yellow}No Files Recently Edited${reset}"
+fi
+
+echo -e "${green}[${yellow}B${green}]${reset} Back To Home"
+echo
+
+echo -e -n "${green}Open Recently File Without [${yellow}.sh${green}] : ${reset}"; read oprec
+echo
+
+ofn=$(echo "$oprec" | tr -d '[:space:]')
+
+case "$oprec" in
+  *.sh)
+  sleep 1
+    echo -e "${yellow}Can't Open The File With [${green}.sh${yellow}] Extension.${reset}"
+    sleep 2
+    rece
+    ;;
+    B | b )
+    sleep 1
+    echo -e "${yellow}Back To Home${reset}"
+    sleep 2
+    home
+    ;;
+  *)
+    if [ -f "$oprec.sh" ]; then
+      sleep 1
+      echo -e "${yellow}Opening ${green}$oprec.sh${yellow} Wait"
+      sleep 2
+      omenu
+    else
+      sleep 1
+      echo -e "${yellow}Invalid Selection Or No Action Epecified For The Entered File.${reset}"
+      sleep 2
+      rece
+    fi
+    ;;
+esac
+}
+
+home() {
+clear
+sleep 3
+vrytecb
+sleep 2
+echo
+
+echo -e "${green}[${yellow}G${green}]${reset} Generate File"
+echo -e "${green}[${yellow}O${green}]${reset} Open Recent Files"
+echo -e "${green}[${yellow}E${green}]${reset} Exit "
+echo
+
+echo -e -n "${green}Select an Option : ${reset}"; read hc
+echo
+
+case $hc in
+  G | g )
+  sleep 1
+  echo -e -n "${green}File Name : ${reset}"; read fn
+  touch .$fn
+  touch $fn.sh
+  chmod +x .$fn
+  chmod +x $fn.sh
+  echo -n "#!" >> .$fn; echo -n "/bin" >> .$fn; echo "/sh" >> .$fn
+  echo -n "#!" >> $fn.sh; echo -n "/bin" >> $fn.sh; echo "/sh" >> $fn.sh
+  menu
+  ;;
+  O | o )
+  clear
+  sleep 2
+  rece
+  ;;
+  * )
+  sleep 1
+  echo -e "${yellow}Invalid Option, Select a Valid Option${reset}"
+  sleep 2
+  home
+  ;;
+esac
+}
+
+menu() {
+clear
+sleep 2
+vrytecb
+echo
+
+sleep 0.5
+echo -e "${green}File Name ${reset}: ${yellow}$fn.sh${reset}"
+echo
+
+sleep 0.5
+echo -e "${bcyan}Components :${reset}"
+echo -e "${green}[${yellow}1${green}]${reset} Text"
+echo -e "${green}[${yellow}2${green}]${reset} Time"
+echo -e "${green}[${yellow}3${green}]${reset} Message Notification"
+echo -e "${green}[${yellow}4${green}]${reset} Open App"
+echo -e "${green}[${yellow}5${green}]${reset} Open Link"
+echo -e "${green}[${yellow}6${green}]${reset} SetEdit Code"
+echo
+
+echo -e "${bcyan}Device Components :${reset}"
+echo -e "${green}[${yellow}7${green}]${reset} Device Brand"
+echo -e "${green}[${yellow}8${green}]${reset} Device Model"
+echo -e "${green}[${yellow}9${green}]${reset} Device Chipset"
+echo -e "${green}[${yellow}10${green}]${reset} Device GPU"
+echo -e "${green}[${yellow}11${green}]${reset} Device SDK Build"
+echo -e "${green}[${yellow}12${green}]${reset} Device Kernel Type"
+echo -e "${green}[${yellow}13${green}]${reset} Device Build Release"
+echo
+
+echo -e "${bcyan}File Settings :${reset}"
+echo -e "${green}[${yellow}N${green}]${reset} New Line"
+echo -e "${green}[${yellow}G${green}]${reset} Generate The File"
+echo -e "${green}[${yellow}D${green}]${reset} Delete File"
+echo -e "${green}[${yellow}B${green}]${reset} Back To Home"
+echo
+
+echo -e "${bcyan}Components Added :${reset}${purple}"
+sh .$fn
+echo -e "${reset}"
+
+echo -e -n "${green}Select a Components : ${reset}"; read mc
+echo
+
+case $mc in
+  1 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Text : ${reset}"; read text
+  echo "echo 'Text Component'" >> .$fn
+  echo "echo '$text'" >> $fn.sh
+  menu
+  ;;
+  2 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Time Number : ${reset}"; read time
+  echo "echo 'Time Component'" >> .$fn
+  echo "sleep $time" >> $fn.sh
+  menu
+  ;;
+  3 )
+  sleep 0.5
+  echo -e -n "${yellow}Notification Title : ${reset}"; read bnotif
+  echo -e -n "${yellow}Notification Message ${reset}: "; read tnotif
+  echo "echo 'Notification Component'" >> .$fn
+  echo "cmd notification post -S bigtext -t '$bnotif' 'Tag' '$tnotif' > /dev/null 2>&1" >> $fn.sh
+  menu
+  ;;
+  4 )
+  sleep 0.5
+  echo -e -n "${yellow}App Package Name : ${reset}"; read oapp
+  echo "echo 'Open App Component'" >> .$fn
+  echo "monkey -p $oapp -c android.intent.category.LAUNCHER 1" >> $fn.sh
+  menu
+  ;;
+  5 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Link : ${reset}"; read olink
+  echo "echo 'Open Link Component'" >> .$fn
+  echo "am start -a android.intent.action.VIEW -d $olink" >> $fn.sh
+  menu
+  ;;
+  6 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter SetEdit Code : ${reset}"; read scode
+  echo "echo 'SetEdit Code Component'" >> .$fn
+  echo "($scode)> /dev/null 2>&1" >> $fn.sh
+  menu
+  ;;
+  7 )
+  sleep 0.5
+  echo "echo 'Device Brand Component'" >> .$fn
+  echo -n "echo 'Device Brand       :     $" >> $fn.sh
+  echo "(getprop ro.product.brand)'" >> $fn.sh
+  menu
+  ;;
+  8 )
+  sleep 0.5
+  echo "echo 'Device Model Component'" >> .$fn
+  echo -n "echo 'Device Model       :     $" >> $fn.sh
+  echo "(getprop ro.product.model)'" >> $fn.sh
+  menu
+  ;;
+  9 )
+  sleep 0.5
+  echo "echo 'Device Chipset Component'" >> .$fn
+  echo -n "echo 'Device Chipset       :     $" >> $fn.sh
+  echo "(getprop ro.product.board)'" >> $fn.sh
+  menu
+  ;;
+  10 )
+  sleep 0.5
+  echo "echo 'Device GPU Component'" >> .$fn
+  echo -n "echo 'Device GPU       :     $" >> $fn.sh
+  echo "(getprop ro.opengles.version)'" >> $fn.sh
+  menu
+  ;;
+  11 )
+  sleep 0.5
+  echo "echo 'Device SDK Build Component'" >> .$fn
+  echo -n "echo 'Device SDK Build       :     $" >> $fn.sh
+  echo "(getprop ro.build.version.sdk)'" >> $fn.sh
+  menu
+  ;;
+  10.5 )
+  sleep 0.5
+  echo "echo 'Device Kernel Type Component'" >> .$fn
+  echo -n "echo 'Device Kernel Type       :     $" >> $fn.sh
+  echo "(uname -s -r -m)'" >> $fn.sh
+  menu
+  ;;
+  13 )
+  sleep 0.5
+  echo "echo 'Device Build Release Component'" >> .$fn
+  echo -n "echo 'Device Build Release       :     $" >> $fn.sh
+  echo "(uname -v)'" >> $fn.sh
+  menu
+  ;;
+  N | n )
+  sleep 0.5
+  echo "echo 'New Line'" >> .$fn
+  echo "echo
+ " >> $fn.sh
+  menu
+  ;;
+  G | g )
+  sleep 1
+  echo "echo 'Generated The File'" >> .$fn
+  echo -e "${yellow}The File Generated And Moved To /sdcard/Vrytec${reset}"
+  mv $fn.sh /sdcard/Vrytec
+  rm -rf .$fn
+  sleep 2
+  home
+  ;;
+  D | d )
+  sleep 1
+  echo "echo 'Deleted The File'" >> .$fn
+  echo -e "${yellow}The File Has Been Deleted${reset}"
+  rm -rf .$fn
+  rm -rf $fn.sh
+  sleep 2
+  home
+  ;;
+  B | b )
+  sleep 1
+  echo -e "${yellow}Back To Home${reset}"
+  sleep 2
+  home
+  ;;
+  * )
+  sleep 1
+  echo -e "${yellow}Invalid Component, Select a Valid Component${reset}"
+  sleep 2
+  menu
+  ;;
+esac
+}
+
+
+
+
+
+
+
+
+
+
+omenu() {
+clear
+sleep 2
+vrytecb
+echo
+
+sleep 0.5
+echo -e "${green}File Name ${reset}: ${yellow}$oprec.sh${reset}"
+echo
+
+sleep 0.5
+echo -e "${bcyan}Components :${reset}"
+echo -e "${green}[${yellow}1${green}]${reset} Text"
+echo -e "${green}[${yellow}2${green}]${reset} Time"
+echo -e "${green}[${yellow}3${green}]${reset} Message Notification"
+echo -e "${green}[${yellow}4${green}]${reset} Open App"
+echo -e "${green}[${yellow}5${green}]${reset} Open Link"
+echo -e "${green}[${yellow}6${green}]${reset} SetEdit Code"
+echo
+
+echo -e "${bcyan}Device Components :${reset}"
+echo -e "${green}[${yellow}7${green}]${reset} Device Brand"
+echo -e "${green}[${yellow}8${green}]${reset} Device Model"
+echo -e "${green}[${yellow}9${green}]${reset} Device Chipset"
+echo -e "${green}[${yellow}10${green}]${reset} Device GPU"
+echo -e "${green}[${yellow}11${green}]${reset} Device SDK Build"
+echo -e "${green}[${yellow}12${green}]${reset} Device Kernel Type"
+echo -e "${green}[${yellow}13${green}]${reset} Device Build Release"
+echo
+
+echo -e "${bcyan}File Settings :${reset}"
+echo -e "${green}[${yellow}N${green}]${reset} New Line"
+echo -e "${green}[${yellow}G${green}]${reset} Generate The File"
+echo -e "${green}[${yellow}D${green}]${reset} Delete File"
+echo -e "${green}[${yellow}B${green}]${reset} Back To Home"
+echo
+
+echo -e "${bcyan}Components Added :${reset}${purple}"
+sh .$oprec
+echo -e "${reset}"
+
+echo -e -n "${green}Select a Components : ${reset}"; read mc
+echo
+
+case $mc in
+  1 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Text : ${reset}"; read text
+  echo "echo 'Text Component'" >> .$oprec
+  echo "echo '$text'" >> $oprec.sh
+  omenu
+  ;;
+  2 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Time Number : ${reset}"; read time
+  echo "echo 'Time Component'" >> .$oprec
+  echo "sleep $time" >> $oprec.sh
+  omenu
+  ;;
+  3 )
+  sleep 0.5
+  echo -e -n "${yellow}Notification Title : ${reset}"; read bnotif
+  echo -e -n "${yellow}Notification Message ${reset}: "; read tnotif
+  echo "echo 'Notification Component'" >> .$oprec
+  echo "cmd notification post -S bigtext -t '$bnotif' 'Tag' '$tnotif' > /dev/null 2>&1" >> $oprec.sh
+  omenu
+  ;;
+  4 )
+  sleep 0.5
+  echo -e -n "${yellow}App Package Name : ${reset}"; read oapp
+  echo "echo 'Open App Component'" >> .$oprec
+  echo "monkey -p $oapp -c android.intent.category.LAUNCHER 1" >> $oprec.sh
+  omenu
+  ;;
+  5 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter Link : ${reset}"; read olink
+  echo "echo 'Open Link Component'" >> .$oprec
+  echo "am start -a android.intent.action.VIEW -d $olink" >> $oprec.sh
+  omenu
+  ;;
+  6 )
+  sleep 0.5
+  echo -e -n "${yellow}Enter SetEdit Code : ${reset}"; read scode
+  echo "echo 'SetEdit Code Component'" >> .$oprec
+  echo "($scode)> /dev/null 2>&1" >> $oprec.sh
+  omenu
+  ;;
+  7 )
+  sleep 0.5
+  echo "echo 'Device Brand Component'" >> .$oprec
+  echo -n "echo 'Device Brand       :     $" >> $oprec.sh
+  echo "(getprop ro.product.brand)'" >> $oprec.sh
+  omenu
+  ;;
+  8 )
+  sleep 0.5
+  echo "echo 'Device Model Component'" >> .$oprec
+  echo -n "echo 'Device Model       :     $" >> $oprec.sh
+  echo "(getprop ro.product.model)'" >> $oprec.sh
+  omenu
+  ;;
+  9 )
+  sleep 0.5
+  echo "echo 'Device Chipset Component'" >> .$oprec
+  echo -n "echo 'Device Chipset       :     $" >> $oprec.sh
+  echo "(getprop ro.product.board)'" >> $oprec.sh
+  omenu
+  ;;
+  10 )
+  sleep 0.5
+  echo "echo 'Device GPU Component'" >> .$oprec
+  echo -n "echo 'Device GPU       :     $" >> $oprec.sh
+  echo "(getprop ro.opengles.version)'" >> $oprec.sh
+  omenu
+  ;;
+  11 )
+  sleep 0.5
+  echo "echo 'Device SDK Build Component'" >> .$oprec
+  echo -n "echo 'Device SDK Build       :     $" >> $oprec.sh
+  echo "(getprop ro.build.version.sdk)'" >> $oprec.sh
+  omenu
+  ;;
+  10.5 )
+  sleep 0.5
+  echo "echo 'Device Kernel Type Component'" >> .$oprec
+  echo -n "echo 'Device Kernel Type       :     $" >> $oprec.sh
+  echo "(uname -s -r -m)'" >> $oprec.sh
+  omenu
+  ;;
+  13 )
+  sleep 0.5
+  echo "echo 'Device Build Release Component'" >> .$oprec
+  echo -n "echo 'Device Build Release       :     $" >> $oprec.sh
+  echo "(uname -v)'" >> $oprec.sh
+  omenu
+  ;;
+  N | n )
+  sleep 0.5
+  echo "echo 'New Line'" >> .$oprec
+  echo "echo
+ " >> $oprec.sh
+  omenu
+  ;;
+  G | g )
+  sleep 1
+  echo "echo 'Generated The File'" >> .$oprec
+  echo -e "${yellow}The File Generated And Moved To /sdcard/Vrytec${reset}"
+  mv $oprec.sh /sdcard/Vrytec
+  rm -rf .$oprec
+  sleep 2
+  home
+  ;;
+  D | d )
+  sleep 1
+  echo "echo 'Deleted The File'" >> .$oprec
+  echo -e "${yellow}The File Has Been Deleted${reset}"
+  rm -rf .$oprec
+  rm -rf $oprec.sh
+  sleep 2
+  home
+  ;;
+  B | b )
+  sleep 1
+  echo -e "${yellow}Back To Home${reset}"
+  sleep 2
+  home
+  ;;
+  * )
+  sleep 1
+  echo -e "${yellow}Invalid Component, Select a Valid Component${reset}"
+  sleep 2
+  omenu
+  ;;
+esac
+}
+
+home

@@ -14,7 +14,7 @@ reset="\e[0m"
 if [[ `ls /sdcard/Vrytec 2> /dev/null` ]]; then
     echo -n " "
 else
-    mkdir /sdcard/Vrytec
+    mkdir /sdcard/Vrytec 2> /den/null
 fi
 
 cd $HOME

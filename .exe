@@ -36,10 +36,10 @@ clear
 vrytecb
 echo
 
-files=$(ls Vrytec/*.sh)
+files=$(ls *.sh 2> /dev/null)
 echo -e "${bcyan}File Recently Edited :${reset}"
 
-if [[ `ls Vrytec/*.sh 2> /dev/null` ]]; then
+if [[ `ls *.sh 2> /dev/null` ]]; then
     echo -e "${purple}$files${reset}"
 else
     echo -e "${yellow}No Files Recently Edited${reset}"
@@ -113,6 +113,18 @@ case $hc in
   clear
   sleep 2
   rece
+  ;;
+  E | e )
+  sleep 1
+  echo -e "${yellow}Exiting Tweaks Generator ${reset}"
+  sleep 2
+  exit 0
+  ;;
+  U | u )
+  sleep 1
+  echo -e "${yellow}Uninstalling Tweak Generator${reset}"
+  sleep 2
+  bash $PREFIX/Vrytec/.uninstall
   ;;
   * )
   sleep 1

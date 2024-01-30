@@ -18,7 +18,7 @@
 <p align="center">
 <img src="https://raw.githubusercontent.com/solacexcv/Vrytec/main/Vrytec.png", width="800", height="800">
 </p>
-<h1 align="center"> Vrytec </h1>
+<h1 align="center"> VRYTEC </h1>
 <h4 align="center"> Vrytec is the ultimate tweaks generator, empowering creativity and personalization. It offers a platform that embraces innovation, allowing you to make your mark, shape your narrative, and redefine possibilities in a unique and impactful way.</h4>
 
 ### Apps Required

@@ -1,5 +1,5 @@
 cd $HOME
-cd Vrytec
+cd /data/data/com.termux/files/usr/Vrytec/
 git reset --hard
 git pull --force
 
@@ -36,10 +36,10 @@ clear
 vrytecb
 echo
 
-files=$(ls *.sh)
+files=$(ls Vrytec/*.sh)
 echo -e "${bcyan}File Recently Edited :${reset}"
 
-if [[ `ls *.sh 2> /dev/null` ]]; then
+if [[ `ls Vrytec/*.sh 2> /dev/null` ]]; then
     echo -e "${purple}$files${reset}"
 else
     echo -e "${yellow}No Files Recently Edited${reset}"
@@ -246,7 +246,7 @@ case $mc in
   echo "(getprop ro.build.version.sdk)'" >> $fn.sh
   menu
   ;;
-  10.5 )
+  12 )
   sleep 0.5
   echo "echo 'Device Kernel Type Component'" >> .$fn
   echo -n "echo 'Device Kernel Type       :     $" >> $fn.sh
@@ -432,7 +432,7 @@ case $mc in
   echo "(getprop ro.build.version.sdk)'" >> $oprec.sh
   omenu
   ;;
-  10.5 )
+  12 )
   sleep 0.5
   echo "echo 'Device Kernel Type Component'" >> .$oprec
   echo -n "echo 'Device Kernel Type       :     $" >> $oprec.sh

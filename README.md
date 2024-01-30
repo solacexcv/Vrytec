@@ -35,15 +35,11 @@ pkg install git && cd $PREFIX && git clone https://github.com/solacexcv/Vrytec/ 
 
 ### Command To Run The Vrytec
 ```
-sh /sdcard/HyperX/run.sh
+Generate
 ```
 
 ### LANGUAGE 
 * Shell
-
-<h1 align="center"> DISCLAIMER </h1>
-
-<h4 align="center">Use this at your own risk. Elevate performance, but usage outcomes vary. Conquer new levels cautiously. Upgrade responsibly with HyperX. We don't take any responsible if something happend. </h4>
 
 ## [~] Find Me on :
 

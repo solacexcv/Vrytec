@@ -92,7 +92,7 @@ echo
 echo -e "${green}[${yellow}G${green}]${reset} Generate File"
 echo -e "${green}[${yellow}O${green}]${reset} Open Recent Files"
 echo -e "${green}[${yellow}E${green}]${reset} Exit "
-echo -e "[U] Delete Tweak Generator"
+echo -e "${green}[${yellow}U${green}]${reset} Delete Tweak Generator"
 echo
 
 echo -e -n "${green}Select an Option : ${reset}"; read hc
